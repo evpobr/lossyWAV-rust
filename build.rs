@@ -1,0 +1,51 @@
+
+fn main() {
+    cxx_build::bridge("src/main.rs")
+        .file("lossyWAV/units/fftw_interface.cpp")
+        .file("lossyWAV/units/nCore.cpp")
+        .file("lossyWAV/units/nFFT.cpp")
+        .file("lossyWAV/units/nFillFFT.cpp")
+        .file("lossyWAV/units/nInitialise.cpp")
+        .file("lossyWAV/units/nOutput.cpp")
+        .file("lossyWAV/units/nParameter.cpp")
+        .file("lossyWAV/units/nProcess.cpp")
+        .file("lossyWAV/units/nRemoveBits.cpp")
+        .file("lossyWAV/units/nSGNS.cpp")
+        .file("lossyWAV/units/nShiftBlocks.cpp")
+        .file("lossyWAV/units/nSpreading.cpp")
+        .file("lossyWAV/units/nWav.cpp")
+        .flag_if_supported("-std=c++11")
+        .include("lossyWAV/units")
+        .compile("cxxbridge-demo");
+
+        println!("cargo:rerun-if-changed=lossyWAV/version.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/fftw_interface.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nCore.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nFFT.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nFillFFT.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nInitialise.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nOutput.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nParameter.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nProcess.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nRemoveBits.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nSGNS.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nShiftBlocks.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nSpreading.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nWav.cpp");
+        println!("cargo:rerun-if-changed=lossyWAV/units/fftw_interface.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nComplex.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nCore.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nFFT.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nFillFFT.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nInitialise.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nMaths.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nOutput.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nParameter.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nProcess.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nRemoveBits.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nSGNS.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nShiftBlocks.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nSpreading.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nSupport.h");
+        println!("cargo:rerun-if-changed=lossyWAV/units/nWav.h");
+}
