@@ -35,7 +35,7 @@ static const char lossyWAVHead2 [] = "This is free software under the GNU GPLv3+
                                      "the extent permitted by law. <http://www.gnu.org/licenses/> for details.\n";
 extern std::ofstream LogOutput;
 
-void nParameter_Init(rust::Vec<rust::String> args);
+void nParameter_Init(const rust::Vec<rust::String> args);
 
 void nParameter_Cleanup();
 

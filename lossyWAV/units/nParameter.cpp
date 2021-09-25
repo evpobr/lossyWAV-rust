@@ -39,7 +39,7 @@
 
 using namespace rust;
 
-Vec<String> main_args;
+std::vector<std::string> main_args;
 
 namespace {
 
@@ -243,14 +243,16 @@ size_t ThisParameterNumber = 0;
 
 static std::string ParamStr(size_t index)
 {
+    std::string s;
     if ((main_args.size() != 0) && (index < main_args.size()))
     {
-        return std::string(main_args[index]);
+        s = std::string(main_args[index]);
     }
     else
     {
-        return std::string();
+        s = "";
     }
+    return s;
 }
 
 char parmchar()
@@ -313,11 +315,17 @@ bool GetNextParamStr()
     if ((main_args.size() != 0) && (ThisParameterNumber < main_args.size()))
     {
         ++ ThisParameterNumber;
-        current_parameter = ParamStr(ThisParameterNumber);
-        return true;
+        std::string s = ParamStr(ThisParameterNumber);
+        current_parameter = s;
+        if (current_parameter.empty())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
-
-    return false;
 }
 
 
@@ -1805,6 +1813,7 @@ bool getParms()
         parameters.wavName = current_parameter;
     }
 
+    std::string wavName = parameters.wavName;
     if (parameters.wavName != "")
     {
         size_t found = parameters.wavName.find_last_of("/\\");
@@ -1945,9 +1954,11 @@ void close_log_file()
 }
 
 
-void nParameter_Init(Vec<String> args)
+void nParameter_Init(const Vec<String> args)
 {
-    main_args = args;
+    for (auto s: args) {
+        main_args.push_back(std::string(s));
+    }
 
     parameters.parameters_checked = false;
     parameters.output.logfileopened = false;
